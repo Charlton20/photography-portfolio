@@ -1,0 +1,93 @@
+/* ==========================================================
+   1. Variables – change the whole look from here
+   ========================================================== */
+:root {
+  /* Colors */
+  --color-bg: #111111;
+  --color-surface: #1c1c1c;
+  --color-border: #2e2e2e;
+  --color-text: #f2f2f2;
+  --color-muted: #9a9a9a;
+  --color-accent: #d4a373;
+  --color-accent-hover: #e6bc91;
+
+  /* Fonts */
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", Arial, sans-serif;
+
+  /* Spacing and sizes */
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --max-width: 1200px;
+  --radius: 6px;
+  --header-height: 4rem;
+}
+
+/* ==========================================================
+   2. Reset and base styles
+   ========================================================== */
+
+/* border-box: padding and border are included in an element's width,
+   so "width: 100%" plus padding never overflows its parent */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+h1,
+h2 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+/* Every section shares the same max width and side padding */
+main > section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+  /* stops the sticky header covering the heading after a nav click */
+  scroll-margin-top: var(--header-height);
+}
+
+main > section > h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: var(--space-lg);
+}
+
+/* Turn off smooth scrolling for people who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
