@@ -261,3 +261,45 @@ main > .hero {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* ==========================================================
+   6. About (Flexbox)
+   ========================================================== */
+.about-inner {
+  display: flex;
+  flex-direction: column;        /* phone: photo above text */
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.about-inner img {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 6 / 7;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.about-text p {
+  color: var(--color-muted);
+  margin-bottom: var(--space-md);
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Tablet and up: photo and text side by side */
+@media (min-width: 768px) {
+  .about-inner {
+    flex-direction: row;
+  }
+
+  .about-inner img {
+    flex: 0 0 40%;               /* don't grow, don't shrink, 40% wide */
+  }
+
+  .about-text {
+    flex: 1;                     /* text takes the remaining space */
+  }
+}
