@@ -91,3 +91,50 @@ main > section > h2 {
     scroll-behavior: auto;
   }
 }
+
+/* ==========================================================
+   3. Header and navigation (Flexbox)
+   ========================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;               /* nav drops under the logo on very small screens */
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm) var(--space-lg);
+  min-height: var(--header-height);
+  padding: var(--space-sm) var(--space-md);
+  background-color: rgba(17, 17, 17, 0.9);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+  padding: 0;
+}
+
+.nav-list a {
+  color: var(--color-muted);
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+}
+
+.nav-list a:hover,
+.nav-list a:focus-visible {
+  color: var(--color-accent);
+}
