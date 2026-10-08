@@ -99,6 +99,40 @@
 
     <section id="contact" class="contact">
       <h2>Book a Shoot</h2>
+      <p class="contact-intro">Tell me what you have in mind and I'll get back to you within two days.</p>
+      <!-- TODO: replace with your own email address -->
+      <form class="contact-form" action="mailto:your-email@example.com" method="post" enctype="text/plain">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="shoot-type">Type of shoot</label>
+            <select id="shoot-type" name="shoot-type">
+              <option>Portrait</option>
+              <option>Event</option>
+              <option>Landscape / travel</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="date">Preferred date</label>
+            <input type="date" id="date" name="date">
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send request</button>
+      </form>
     </section>
   </main>
 

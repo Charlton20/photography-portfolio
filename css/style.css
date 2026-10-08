@@ -304,3 +304,70 @@ main > .hero {
     flex: 1;                     /* text takes the remaining space */
   }
 }
+
+/* ==========================================================
+   7. Contact form (Flexbox)
+   ========================================================== */
+.contact-intro {
+  color: var(--color-muted);
+  margin: calc(var(--space-lg) * -0.5) 0 var(--space-lg);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 720px;
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* Two fields side by side; they wrap onto separate lines
+   when there isn't room for both at 220px */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1 1 220px;               /* grow, shrink, start at 220px */
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font: inherit;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color-scheme: dark;            /* dark date picker and dropdown */
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.contact-form .btn {
+  align-self: flex-start;        /* button doesn't stretch full width */
+}
