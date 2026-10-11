@@ -43,6 +43,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* nav links stop below the sticky header instead of hiding the heading under it */
+  scroll-padding-top: var(--header-height);
 }
 
 body {
@@ -76,8 +78,6 @@ main > section {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--space-xl) var(--space-md);
-  /* stops the sticky header covering the heading after a nav click */
-  scroll-margin-top: var(--header-height);
 }
 
 main > section > h2,
