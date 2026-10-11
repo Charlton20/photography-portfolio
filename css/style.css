@@ -469,30 +469,71 @@ main > .hero {
 }
 
 /* ==========================================================
-   8. Footer (Flexbox)
+   8. Footer (Grid for the columns, Flexbox for the bottom bar)
    ========================================================== */
 .site-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-md);
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--space-lg) var(--space-md);
+  background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
   color: var(--color-muted);
   font-size: 0.9rem;
 }
 
-.social-list {
-  display: flex;
-  flex-wrap: wrap;
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+}
+
+/* auto-fit makes as many columns as fit (each at least 12rem wide):
+   4 on desktop, 2 on tablet, 1 on phone – no media query needed */
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   gap: var(--space-lg);
+}
+
+.footer-brand p {
+  margin-top: var(--space-sm);
+}
+
+.footer-heading {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+}
+
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
   list-style: none;
   padding: 0;
 }
 
-.social-list a {
+.footer-list a {
+  color: var(--color-muted);
+  text-decoration: none;
+  overflow-wrap: anywhere;       /* long email address wraps instead of overflowing */
+}
+
+.footer-list a:hover,
+.footer-list a:focus-visible {
+  color: var(--color-accent);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-bottom a {
   text-decoration: none;
 }
