@@ -10,11 +10,13 @@ Open `index.html` in a browser to view it.
 | --- | --- |
 | Semantic landmarks | `header`, `nav`, `main`, `section`, `figure`, `footer` in `index.html` |
 | One `h1` | Hero section |
-| Working nav links | `#work`, `#about`, `#contact` anchors, with `scroll-margin-top` so the sticky header doesn't cover headings |
+| Working nav links | `#work`, `#about`, `#contact` anchors, with `scroll-padding-top` so the sticky header doesn't cover headings |
+| Mobile menu | CSS-only hamburger (hidden checkbox + label) below 768px |
 | Global `box-sizing: border-box` | Section 2 of `css/style.css` |
 | Own CSS variables for colors | `:root` in section 1 of `css/style.css` |
-| Flexbox | Header/nav, hero, about, contact form, footer |
-| Grid | Gallery: 1 column (phone), 2 (600px+), 4 (1024px+) |
+| Flexbox | Header/nav, hero, about, contact form, footer bottom bar |
+| Grid | Gallery: 1 column (phone), 2 (600px+), 4 (1024px+); footer columns with `auto-fit` |
+| Relative units | Sizes in `rem`, `%`, `vh`, and `vw` (via `clamp()`); only borders use px |
 | `object-fit: cover` | Gallery images fill every cell without stretching |
 | No horizontal scroll | Tested at 360px, 768px, and 1440px |
 | Contact form instead of shop button | "Book a Shoot" section |
