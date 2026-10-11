@@ -101,7 +101,7 @@ main > section > h2,
   top: 0;
   z-index: 10;
   display: flex;
-  flex-wrap: wrap;               /* nav drops under the logo on very small screens */
+  flex-wrap: wrap;               /* lets the open phone menu drop onto its own line */
   justify-content: space-between;
   align-items: center;
   gap: var(--space-sm) var(--space-lg);
@@ -119,14 +119,86 @@ main > section > h2,
   text-decoration: none;
 }
 
+/* Hides an element visually but keeps it usable by keyboard and screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hamburger icon: one span is the middle bar,
+   ::before and ::after draw the top and bottom bars */
+.nav-toggle-label {
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: "";
+  position: absolute;
+}
+
+.nav-toggle-label span::before { top: -0.5rem; }
+.nav-toggle-label span::after  { top: 0.5rem; }
+
+/* Keyboard users see a focus ring on the icon */
+.nav-toggle:focus-visible + .nav-toggle-label {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Phone: the menu is hidden until the checkbox is ticked */
+.site-header nav {
+  display: none;
+  flex-basis: 100%;              /* full width, on its own line under the logo */
+}
+
+.nav-toggle:checked ~ nav {
+  display: block;
+}
+
+/* When open, the three bars turn into an X */
+.nav-toggle:checked + .nav-toggle-label span {
+  background-color: transparent;
+}
+
+.nav-toggle:checked + .nav-toggle-label span::before {
+  transform: translateY(0.5rem) rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-toggle-label span::after {
+  transform: translateY(-0.5rem) rotate(-45deg);
+}
+
 .nav-list {
   display: flex;
-  gap: var(--space-lg);
+  flex-direction: column;        /* phone: links stacked */
   list-style: none;
   padding: 0;
 }
 
 .nav-list a {
+  display: block;
+  padding: 0.75rem 0;            /* big enough to tap with a thumb */
+  border-top: 1px solid var(--color-border);
   color: var(--color-muted);
   text-decoration: none;
   font-weight: 600;
@@ -138,6 +210,29 @@ main > section > h2,
 .nav-list a:hover,
 .nav-list a:focus-visible {
   color: var(--color-accent);
+}
+
+/* Tablet and up: hide the hamburger and show the links in a row */
+@media (min-width: 768px) {
+  .nav-toggle,
+  .nav-toggle-label {
+    display: none;
+  }
+
+  .site-header nav {
+    display: block;
+    flex-basis: auto;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    gap: var(--space-lg);
+  }
+
+  .nav-list a {
+    padding: 0;
+    border-top: none;
+  }
 }
 
 /* ==========================================================

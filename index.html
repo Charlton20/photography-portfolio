@@ -13,6 +13,10 @@
 <body>
   <header class="site-header">
     <a href="#top" class="logo">Charlton Mapiye</a>
+    <!-- Hamburger menu: the hidden checkbox remembers if the menu is open,
+         the label is the clickable icon. No JavaScript needed. -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle visually-hidden" aria-label="Open menu">
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true"><span></span></label>
     <nav aria-label="Main navigation">
       <ul class="nav-list">
         <li><a href="#work">Work</a></li>
