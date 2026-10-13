@@ -21,9 +21,10 @@ const columns = [
   },
 ]
 
-export function Footer() {
-  const year = new Date().getFullYear()
+// worked out once when the page loads, not on every render
+const year = new Date().getFullYear()
 
+export function Footer() {
   return (
     <footer className="border-t border-line bg-surface text-sm text-muted">
       <div className="mx-auto max-w-6xl px-4 pt-16 pb-8">
