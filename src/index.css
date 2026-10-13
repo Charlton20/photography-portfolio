@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* My own design tokens. Tailwind turns each one into classes,
+   e.g. --color-accent gives bg-accent, text-accent, border-accent */
+@theme {
+  --color-bg: #111111;
+  --color-surface: #1c1c1c;
+  --color-line: #2e2e2e;
+  --color-ink: #f2f2f2;
+  --color-muted: #9a9a9a;
+  --color-accent: #d4a373;
+  --color-accent-hover: #e6bc91;
+
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", Arial, sans-serif;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
