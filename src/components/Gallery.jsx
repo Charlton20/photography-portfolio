@@ -8,6 +8,16 @@ export function Gallery() {
   // which category button is selected
   const [filter, setFilter] = useState('All')
 
+  // star rating for each photo, keyed by id, e.g. { 'alpine-ridge': 4 }.
+  // Kept here (not in each card) so ratings survive when the filter
+  // hides a card and shows it again.
+  const [ratings, setRatings] = useState({})
+
+  function handleRate(id, value) {
+    // copy the old object and change one key – never edit state directly
+    setRatings({ ...ratings, [id]: value })
+  }
+
   // worked out on every render from the state, not stored separately
   const filtered =
     filter === 'All' ? photos : photos.filter((photo) => photo.category === filter)
@@ -44,7 +54,12 @@ export function Gallery() {
           grid-flow-row-dense fills gaps left by the wide and tall photos. */}
       <div className="grid auto-rows-[16rem] grid-cols-1 gap-4 sm:grid-flow-row-dense sm:grid-cols-2 lg:grid-cols-4">
         {filtered.map((photo) => (
-          <PhotoCard key={photo.id} photo={photo} />
+          <PhotoCard
+            key={photo.id}
+            photo={photo}
+            rating={ratings[photo.id] ?? 0}
+            onRate={(value) => handleRate(photo.id, value)}
+          />
         ))}
       </div>
     </section>
