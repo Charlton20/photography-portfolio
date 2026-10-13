@@ -10,7 +10,10 @@ npm install
 npm run dev
 ```
 
-Then open the local address Vite prints (usually http://localhost:5173).
+Then open the local address Vite prints (usually http://localhost:5173/photography-portfolio/).
+
+**Live site:** https://charlton20.github.io/photography-portfolio/ — rebuilt and published
+automatically by GitHub Actions (`.github/workflows/deploy.yml`) on every push to `main`.
 
 ## Project structure
 
