@@ -1,25 +1,48 @@
 # Charlton Mapiye Photography
 
-A single-page photography portfolio built with plain HTML5 and CSS3 (no frameworks).
+A single-page photography portfolio, rebuilt with **React**, **Vite**, and **Tailwind CSS**
+(Assignment 2). The plain HTML/CSS version from Assignment 1 is in the git history.
 
-Open `index.html` in a browser to view it.
+## Run it
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the local address Vite prints (usually http://localhost:5173).
+
+## Project structure
+
+```
+src/
+  main.jsx              Mounts <App /> into index.html
+  App.jsx               Puts the page together from components
+  index.css             Tailwind import + my theme colors and fonts (@theme)
+  data/photos.js        All 12 photos as one array of objects
+  components/
+    Header.jsx          Sticky nav + hamburger menu (useState)
+    Hero.jsx            Background photo, h1, call to action
+    Gallery.jsx         Category filter + ratings state (useState), photo grid
+    PhotoCard.jsx       One photo in the grid
+    StarRating.jsx      Controlled component reused on every photo
+    About.jsx           Short about section
+    Contact.jsx         Book-a-shoot form
+    Footer.jsx          Link columns built from an array
+```
 
 ## Requirements checklist
 
 | Requirement | Where |
 | --- | --- |
-| Semantic landmarks | `header`, `nav`, `main`, `section`, `figure`, `footer` in `index.html` |
-| One `h1` | Hero section |
-| Working nav links | `#work`, `#about`, `#contact` anchors, with `scroll-padding-top` so the sticky header doesn't cover headings |
-| Mobile menu | CSS-only hamburger (hidden checkbox + label) below 768px |
-| Global `box-sizing: border-box` | Section 2 of `css/style.css` |
-| Own CSS variables for colors | `:root` in section 1 of `css/style.css` |
-| Flexbox | Header/nav, hero, about, contact form, footer bottom bar |
-| Grid | Gallery: 1 column (phone), 2 (600px+), 4 (1024px+); footer columns with `auto-fit` |
-| Relative units | Sizes in `rem`, `%`, `vh`, and `vw` (via `clamp()`); only borders use px |
-| `object-fit: cover` | Gallery images fill every cell without stretching |
+| Vite + React in the existing repo | `package.json`, `vite.config.js`, `src/main.jsx` |
+| Componentized | Header, Hero, Gallery (main content), About, Contact, Footer |
+| Items in one data file | `src/data/photos.js`, rendered with `.map()` |
+| Tailwind wired in, old CSS removed | `@tailwindcss/vite` plugin, `src/index.css`; `css/style.css` deleted |
+| Real filter with useState | `Gallery.jsx`: `filter` state + `.filter()` by category |
+| Reusable controlled component | `StarRating.jsx`: takes `value` + `onChange`, used on all 12 cards |
+| Mobile-first responsive classes | e.g. `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4` |
 | No horizontal scroll | Tested at 360px, 768px, and 1440px |
-| Contact form instead of shop button | "Book a Shoot" section |
 
 ## Credits
 
