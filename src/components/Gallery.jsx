@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { photos } from '../data/photos'
+import { getPrints, startCheckout } from '../api'
 import { PhotoCard } from './PhotoCard'
 
 const categories = ['All', 'Landscape', 'Portrait', 'Travel']
 
-export function Gallery() {
+export function Gallery({ user, onSignInNeeded }) {
   // which category button is selected
   const [filter, setFilter] = useState('All')
 
@@ -16,6 +17,38 @@ export function Gallery() {
   function handleRate(id, value) {
     // copy the old object and change one key – never edit state directly
     setRatings({ ...ratings, [id]: value })
+  }
+
+  // print prices from the server, keyed by photo id, e.g. { 'alpine-ridge': 4500 }.
+  // Stays empty if the server can't be reached, which hides the buy buttons.
+  const [prices, setPrices] = useState({})
+  // id of the photo whose checkout is starting, so its button can say so
+  const [buyingId, setBuyingId] = useState(null)
+  const [buyError, setBuyError] = useState('')
+
+  useEffect(() => {
+    getPrints()
+      .then((prints) => setPrices(Object.fromEntries(prints.map((p) => [p.id, p.priceCents]))))
+      .catch(() => {})
+  }, [])
+
+  async function handleBuy(id) {
+    // every order belongs to a user, so ask them to sign in first
+    if (!user) {
+      onSignInNeeded()
+      return
+    }
+
+    setBuyingId(id)
+    setBuyError('')
+    try {
+      const { url } = await startCheckout(id)
+      // leave the site for Stripe's hosted checkout page
+      window.location.assign(url)
+    } catch (err) {
+      setBuyError(err.message)
+      setBuyingId(null)
+    }
   }
 
   // worked out on every render from the state, not stored separately
@@ -46,6 +79,12 @@ export function Gallery() {
         </div>
       </div>
 
+      {buyError && (
+        <p role="alert" className="mb-4 rounded-md border border-red-400/40 p-3 text-sm text-red-400">
+          Couldn't start checkout: {buyError}
+        </p>
+      )}
+
       <p className="sr-only" aria-live="polite">
         Showing {filtered.length} photos
       </p>
@@ -59,6 +98,9 @@ export function Gallery() {
             photo={photo}
             rating={ratings[photo.id] ?? 0}
             onRate={(value) => handleRate(photo.id, value)}
+            price={prices[photo.id]}
+            buying={buyingId === photo.id}
+            onBuy={() => handleBuy(photo.id)}
           />
         ))}
       </div>

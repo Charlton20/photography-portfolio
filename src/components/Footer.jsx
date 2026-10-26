@@ -1,10 +1,13 @@
+// BASE_URL in front so the links also work from the order page
+const home = import.meta.env.BASE_URL
+
 const columns = [
   {
     heading: 'Explore',
     links: [
-      { href: '#work', label: 'Work' },
-      { href: '#about', label: 'About' },
-      { href: '#contact', label: 'Book a shoot' },
+      { href: `${home}#work`, label: 'Work' },
+      { href: `${home}#about`, label: 'About' },
+      { href: `${home}#contact`, label: 'Book a shoot' },
     ],
   },
   {
@@ -31,7 +34,7 @@ export function Footer() {
         {/* 1 column on phones, 2 from sm, 4 from lg */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <a href="#top" className="font-heading text-xl font-bold text-ink">
+            <a href={`${home}#top`} className="font-heading text-xl font-bold text-ink">
               Charlton Mapiye
             </a>
             <p className="mt-2">Landscape, portrait, and travel photography.</p>
@@ -64,7 +67,7 @@ export function Footer() {
 
         <div className="mt-16 flex flex-wrap justify-between gap-4 border-t border-line pt-8">
           <p>&copy; {year} Charlton Mapiye. All photos used for demo purposes.</p>
-          <a href="#top" className="text-accent hover:text-accent-hover">
+          <a href={`${home}#top`} className="text-accent hover:text-accent-hover">
             Back to top &uarr;
           </a>
         </div>
